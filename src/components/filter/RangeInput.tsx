@@ -1,4 +1,3 @@
-//@ts-nocheck
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
@@ -9,11 +8,11 @@ const RangeInput = () => {
   const rangeRef: any = useRef();
   const inputRef: any = useRef([]);
 
-  const pushRef = (el) => inputRef.current.push(el);
+  const pushRef = (el: any) => inputRef.current.push(el);
 
   useEffect(() => {
-    inputRef.current.forEach((input) => {
-      input.addEventListener("input", (e) => {
+    inputRef.current.forEach((input: any) => {
+      input.addEventListener("input", (e: any) => {
         let minVal = parseInt(inputRef.current[0].value);
 
         let maxVal = parseInt(inputRef.current[1].value);
