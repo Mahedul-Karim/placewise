@@ -20,6 +20,11 @@ const config: Config = {
    },
    fontFamily:{
     poppins: ["Poppins", "sans-serif"]
+   },
+   extend:{
+    screens:{
+      '400px':'400px'
+    }
    }
   },
   plugins: [],

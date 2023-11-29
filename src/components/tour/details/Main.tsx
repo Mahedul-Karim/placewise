@@ -1,12 +1,15 @@
 import React from "react";
-import Summary from "./Summary";
+import Summary from "./main/Summary";
 import Button from "@/components/ui/button/ButtonOutline";
-import Section from "./Section";
-import ItineraryDetails from "./ItineraryDetails";
-
+import Section from "./main/Section";
+import ItineraryDetails from "./main/ItineraryDetails";
+import Policy from "./policy/Policy";
+import Comments from "./comments/Comments";
+import CommentForm from "./comments/CommentForm";
+import Sidebar from "./sidebar/Sidebar";
 const Main = () => {
   return (
-    <div className="grid grid-cols-[1fr_0.6fr] gap-4">
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.4fr] gap-4">
       <div className="bg-white rounded-2xl px-3 py-5">
         <Section title="Dubai,UAE">
           <Summary />
@@ -28,8 +31,19 @@ const Main = () => {
           <ItineraryDetails />
           <ItineraryDetails />
         </Section>
+        <Section title="Tour policy">
+          <Policy />
+        </Section>
+
+        <Comments />
+        <Button styles="bg-grey hover:bg-primary mt-3 hover:text-white font-[600]">
+          More reviews
+        </Button>
+        <CommentForm />
       </div>
-      <div className="bg-white rounded-2xl px-3 py-5"></div>
+      <div className="bg-white rounded-2xl px-3 py-5 h-max">
+        <Sidebar />
+      </div>
     </div>
   );
 };

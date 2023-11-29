@@ -9,7 +9,7 @@ type Props = {
 const Button: React.FC<Props> = ({ children, outline, styles }) => {
   return (
     <button
-      className={`flex items-center jutify-center ${
+      className={`flex items-center justify-center ${
         outline
           ? `text-primary border-[1px] border-solid border-primary hover:bg-primary hover:text-white font-[600]`
           : ""

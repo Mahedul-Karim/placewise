@@ -3,7 +3,7 @@ import React from "react";
 const ItineraryDetails = () => {
   return (
     <div
-      className="grid grid-cols-[0.4fr_1fr] !mt-[30px] px-3 relative line"
+      className="grid grid-cols-1 md:grid-cols-[0.4fr_1fr] !mt-[30px] sm:px-3 relative line gap-3 md:gap-0"
       
     >
       <div className="w-28 h-28 bg-primary rounded-full flex items-center justify-center relative after:absolute after:scale-[1.18] after:w-full after:h-full after:border-dashed after:border-primary after:border after:rounded-full">
@@ -17,12 +17,12 @@ const ItineraryDetails = () => {
         <p className="text-[16px] pb-2 border-b border-dashed border-border">
           Dubai
         </p>
-        <div className="grid grid-cols-2 gap-3 py-5 border-b border-dashed border-border">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 py-5 border-b border-dashed border-border">
           <div className="w-full">
             <img
               src="/tour-details-img-1.webp"
               alt="tour"
-              className="block w-full !h-[150px] object-cover rounded-2xl"
+              className="block w-full h-auto sm:!h-[150px] object-cover rounded-2xl"
             />
           </div>
           <div>

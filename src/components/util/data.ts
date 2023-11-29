@@ -8,12 +8,12 @@ export const navData = [
     to: "/tours",
   },
   {
-    label: "Hotels",
-    to: "/",
+    label: "Agents",
+    to: "/agents",
   },
   {
-    label: "Contact Us",
-    to: "/",
+    label: "Services",
+    to: "/services",
   },
 ];
 
@@ -34,3 +34,4 @@ export const benefitData=[
     description:'Our customer experience team is available around the clock to ques your ans'
   }
 ]
+

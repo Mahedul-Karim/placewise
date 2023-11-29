@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-poppins bg-grey text-neutral`}>{children}</body>
+      <body className={`font-poppins bg-grey text-neutral overflow-x-hidden`}>{children}</body>
     </html>
   );
 }

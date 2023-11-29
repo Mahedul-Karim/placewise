@@ -41,7 +41,7 @@ const TourCard = () => {
         </div>
         <div className="flex items-center justify-between mt-4">
           <p className="text-[20px] font-[600] text-primary">$6220</p>
-          <Button outline>Rent now</Button>
+          <Button outline>Book now</Button>
         </div>
       </div>
     </div>
