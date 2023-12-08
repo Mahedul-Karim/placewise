@@ -27,7 +27,7 @@ const Header = () => {
     >
       <Container>
         <div className="flex items-center justify-between">
-          <Img src="/logo_white.svg" classes="w-[55px] h-[53px]" />
+          <Img src="/logo_white.svg" classes="w-[55px] h-[53px] cursor-pointer" />
           <Nav />
           <UserNav classes="hidden sm:flex"/>
           <div className="flex flex-col items-end gap-2 sm:hidden w-10 h-10 cursor-pointer relative" onClick={()=>setActive(prev=>!prev)}>

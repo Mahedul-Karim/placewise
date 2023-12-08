@@ -5,11 +5,12 @@ type Props = {
   classes?: string;
   src: string;
   rounded?: boolean;
+  onClick?:()=>void;
 };
 
-const Img: React.FC<Props> = ({ classes, src, rounded = false }) => {
+const Img: React.FC<Props> = ({ classes, src, rounded = false,onClick }) => {
   return (
-    <div className={`${classes} relative`}>
+    <div className={`${classes} relative`} onClick={onClick}>
       <Image
         src={src}
         fill
