@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`font-poppins bg-grey text-neutral overflow-x-hidden`}>{children}</body>
     </html>
   );

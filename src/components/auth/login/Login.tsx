@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Input from "../form/Input";
+import Button from "@/components/ui/button/ButtonOutline";
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -20,6 +21,8 @@ const Login = () => {
         value={password}
         onChange={setPassword}
       />
+      <p>Don&apos;t have an account? <span className="text-primary font-[600] cursor-pointer">Sign up</span></p>
+      <Button styles="bg-primary text-white">Login</Button>
     </div>
   );
 };
