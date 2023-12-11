@@ -1,13 +1,23 @@
 "use client";
 import React, { useState } from "react";
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import Input from "../form/Input";
 import Button from "@/components/ui/button/ButtonOutline";
 import { useRouter } from "next/navigation";
+import { auth } from "@/firebase/firebase";
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const router = useRouter();
+  const signinUser=async ()=>{
+    try{
+      const user = await signInWithEmailAndPassword(auth,email!,password!);
+      console.log(user)
+    }catch(err){
+      console.log(err)
+    }
+  }
   return (
     <div className="bg-white px-4 py-6 rounded-md shadow-sm w-full sm:w-[400px] flex flex-col gap-3">
       <Input
@@ -23,7 +33,7 @@ const Login = () => {
         onChange={setPassword}
       />
       <p>Don&apos;t have an account? <span className="text-primary font-[600] cursor-pointer" onClick={()=>router.push('/signup')}>Sign up</span></p>
-      <Button styles="bg-primary text-white">Login</Button>
+      <Button styles="bg-primary text-white" onClick={signinUser}>Login</Button>
     </div>
   );
 };
