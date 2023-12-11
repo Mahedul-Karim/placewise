@@ -1,10 +1,14 @@
+"use client";
 import Img from "@/components/util/Img";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { AiOutlineGlobal } from "react-icons/ai";
-type Props={
-  classes:string;
-}
-const UserNav:React.FC<Props> = ({classes}) => {
+import { FaUserCircle } from "react-icons/fa";
+type Props = {
+  classes: string;
+};
+const UserNav: React.FC<Props> = ({ classes }) => {
+  const router = useRouter();
   return (
     <div className={`${classes} items-center gap-3`}>
       <div>
@@ -13,11 +17,14 @@ const UserNav:React.FC<Props> = ({classes}) => {
         </button>
       </div>
 
-      <Img
+      {/* <Img
         src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1413502914.1699833600&semt=ais"
         classes="w-[40px] h-[40px]"
         rounded
-      />
+      /> */}
+      <button onClick={() => router.push("/login")}>
+        <FaUserCircle className="w-[35px] h-[35px]" color={"#363aed"} />
+      </button>
     </div>
   );
 };
