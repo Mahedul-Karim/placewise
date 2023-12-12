@@ -11,12 +11,14 @@
   "dependencies": {
     "@prisma/client": "^5.7.0",
     "firebase": "^10.7.1",
+    "firebase-admin": "^12.0.0",
     "next": "14.0.1",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.11.0"
   },
   "devDependencies": {
+    "@types/mime": "^3.0.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

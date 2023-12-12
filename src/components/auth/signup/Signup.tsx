@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth/cordova";
 
-import { auth } from "@/firebase/firebase";
+import { auth } from "@/lib/firebase";
 import Input from "../form/Input";
 import Button from "@/components/ui/button/ButtonOutline";
 import Img from "@/components/util/Img";
