@@ -26,7 +26,7 @@ const Login = () => {
         },
         credentials: "include",
       });
-      console.log(sendToken);
+      
     } catch (err) {
       console.log(err);
     }
