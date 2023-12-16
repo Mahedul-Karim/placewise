@@ -1,5 +1,6 @@
 "use client";
 import { api } from "@/lib/api";
+import { SafeUser } from "@/types";
 import { User } from "@prisma/client";
 import {
   QueryClient,

@@ -1,4 +1,4 @@
-
+import { User } from "@prisma/client"
 
 type ApiParams={
     endpoint:string;
