@@ -10,6 +10,7 @@ import { useMutation } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import Loader from "@/components/ui/Loader";
 import toast from "react-hot-toast";
+import { ApiParams } from "@/types";
 
 const Login = () => {
   const [email, setEmail] = useState();

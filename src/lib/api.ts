@@ -1,3 +1,4 @@
+import { ApiParams } from "@/types";
 
 
 export const api = async ({endpoint, options}:ApiParams) => {

@@ -11,6 +11,7 @@ import { useMutation } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import toast from "react-hot-toast";
 import Loader from "@/components/ui/Loader";
+import { ApiParams } from "@/types";
 type Props = {
   classes?: string;
 };

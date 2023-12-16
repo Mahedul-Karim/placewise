@@ -12,6 +12,7 @@ import { useMutation } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { useCtx } from "@/context/ContextProvider";
 import Loader from "@/components/ui/Loader";
+import { ApiParams } from "@/types";
 const Signup = () => {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
