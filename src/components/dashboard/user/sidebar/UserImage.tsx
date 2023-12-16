@@ -13,7 +13,7 @@ const UserImage: React.FC<Props> = ({ classes }) => {
     >
       <Image
         fill
-        src={user?.avatar!}
+        src={user?.avatar as string}
         alt="image"
         className="rounded-full object-cover !w-[100px] !h-[100px]"
         style={{inset:'auto'}}
