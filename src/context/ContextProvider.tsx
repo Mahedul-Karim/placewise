@@ -12,7 +12,7 @@ type Props = {
   children: React.ReactNode;
 };
 type ContextType = {
-  user: User | null;
+  user: SafeUser | null;
   isLoggedIn: boolean;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;

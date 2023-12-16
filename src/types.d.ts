@@ -8,3 +8,7 @@ type ApiParams={
         method:string;
     }
 }
+
+type SafeUser=Omit<User,"avatar"> &{
+    avatar:string
+}
