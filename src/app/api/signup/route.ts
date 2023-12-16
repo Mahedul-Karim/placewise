@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { NextResponse, NextRequest } from "next/server";
 import cloudinary from "cloudinary";
 import { cookies, headers } from "next/headers";

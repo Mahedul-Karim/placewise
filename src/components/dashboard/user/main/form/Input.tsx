@@ -4,7 +4,7 @@ type Props={
     type:string;
     classes?:string;
     disabled?:boolean;
-    value:string;
+    value?:string;
     onChange?:(e:any)=>void
 }
 const Input:React.FC<Props> = ({label,type,classes,disabled,value,onChange}) => {
