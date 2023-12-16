@@ -11,6 +11,7 @@ const VendorImage = () => {
       <div
         className={`border border-solid border-primary rounded-full p-1 bg-white relative flex items-center justify-center w-[70px] h-[70px]`}
       >
+        
         <Image
          fill
           src={user?.avatar!}
