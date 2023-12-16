@@ -15,7 +15,7 @@ type Props = {
 type ContextType = {
   user: SafeUser | null;
   isLoggedIn: boolean;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setUser: React.Dispatch<React.SetStateAction<SafeUser | null>>;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const queryClient = new QueryClient({
@@ -34,7 +34,7 @@ const Context = createContext<ContextType>({
 });
 
 const ContextProvider: React.FC<Props> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<SafeUser | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const getUser = async function () {
