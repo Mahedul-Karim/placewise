@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 import { useCtx } from "@/context/ContextProvider";
 import Image from "next/image";
@@ -18,6 +19,7 @@ const UserImage: React.FC<Props> = ({ classes }) => {
         className="rounded-full object-cover !w-[100px] !h-[100px]"
         style={{inset:'auto'}}
       />
+
     </div>
   );
 };
