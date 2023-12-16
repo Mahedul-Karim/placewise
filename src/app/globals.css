@@ -83,6 +83,23 @@ input[type="range"]::-moz-slider-thumb {
 .inbox::-webkit-scrollbar {
   display: none;
 }
+
+.loader {
+  animation: loader linear infinite 1s;
+}
+
+.button__loader {
+  @apply border-white w-[20px] h-[20px];
+}
+
+@keyframes loader {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
 @media (max-width: 1024px) {
   #hero__bg::after {
     display: none;

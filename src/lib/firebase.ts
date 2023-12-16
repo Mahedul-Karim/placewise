@@ -10,7 +10,7 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID,
 };
 const app = initializeApp(firebaseConfig);
-console.log(app)
+
 
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();

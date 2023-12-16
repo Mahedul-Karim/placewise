@@ -1,5 +1,6 @@
 "use client";
 import Img from "@/components/util/Img";
+import { useCtx } from "@/context/ContextProvider";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { AiOutlineGlobal } from "react-icons/ai";
@@ -9,6 +10,9 @@ type Props = {
 };
 const UserNav: React.FC<Props> = ({ classes }) => {
   const router = useRouter();
+
+  const { user } = useCtx();
+
   return (
     <div className={`${classes} items-center gap-3`}>
       <div>
@@ -17,14 +21,13 @@ const UserNav: React.FC<Props> = ({ classes }) => {
         </button>
       </div>
 
-      {/* <Img
-        src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1413502914.1699833600&semt=ais"
-        classes="w-[40px] h-[40px]"
-        rounded
-      /> */}
-      <button onClick={() => router.push("/login")}>
-        <FaUserCircle className="w-[35px] h-[35px]" color={"#363aed"} />
-      </button>
+      {user ? (
+        <Img src={user.avatar} classes="w-[40px] h-[40px] cursor-pointer" rounded onClick={()=>{router.push('/user')}}/>
+      ) : (
+        <button onClick={() => router.push("/login")}>
+          <FaUserCircle className="w-[35px] h-[35px]" color={"#363aed"} />
+        </button>
+      )}
     </div>
   );
 };
