@@ -16,12 +16,12 @@ model User{
   lastName String
   email String @unique
   avatar String
-  isAdmin Boolean @default(false)
-  isVendor Boolean @default(false)
+  isAdmin Boolean? @default(false)
+  isVendor Boolean? @default(false)
   phoneNumber Int?
   Bio String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
 }
 
 model Tours{

@@ -2,6 +2,7 @@ import Button from "@/components/ui/button/ButtonOutline";
 import Image from "next/image";
 import React from "react";
 import VendorImage from "./VendorImage";
+import Modal from "@/components/ui/Modal";
 
 const Vendor = () => {
   return (
@@ -17,6 +18,7 @@ const Vendor = () => {
           </div>
         </header>
       </div>
+      <Modal>Hello</Modal>
     </main>
   );
 };
