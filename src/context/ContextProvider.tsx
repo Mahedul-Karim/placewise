@@ -32,7 +32,6 @@ const Context = createContext<ContextType>({
   setUser: () => {},
   setIsLoggedIn: () => {},
 });
-
 const ContextProvider: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState<SafeUser | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
