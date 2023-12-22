@@ -82,26 +82,26 @@ const Signup = () => {
           type="text"
           label="First name"
           value={firstName}
-          onChange={setFirstName}
+          onChange={(e:any)=>setFirstName(e.target.value)}
         />
         <Input
           type="text"
           label="Last name"
           value={lastName}
-          onChange={setLastName}
+          onChange={(e:any)=>setLastName(e.target.value)}
         />
       </div>
       <Input
         type="text"
         label="Email address"
         value={email}
-        onChange={setEmail}
+        onChange={(e:any)=>setEmail(e.target.value)}
       />
       <Input
         type="password"
         label="Password"
         value={password}
-        onChange={setPassword}
+        onChange={(e:any)=>setPassword(e.target.value)}
       />
       <Input type="password" label="Confirm Password" />
       <div className="flex gap-2">

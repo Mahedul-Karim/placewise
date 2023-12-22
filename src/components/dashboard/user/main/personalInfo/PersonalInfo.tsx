@@ -6,17 +6,21 @@ import Button from "@/components/ui/button/ButtonOutline";
 import UserImage from "../../sidebar/UserImage";
 import Title from "@/components/ui/Title";
 import { useCtx } from "@/context/ContextProvider";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import toast from "react-hot-toast";
 import Loader from "@/components/ui/Loader";
 import { ApiParams } from "@/types";
+import { signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { FaSignOutAlt } from "react-icons/fa";
+
 type Props = {
   classes?: string;
 };
 const PersonalInfo: React.FC<Props> = ({ classes }) => {
-  const { user,setUser } = useCtx();
+  const { user,setUser,setIsLoggedIn } = useCtx();
   const [name, setName] = useState(user?.firstName! + " " + user?.lastName!);
 
   const router = useRouter();
@@ -28,6 +32,18 @@ const PersonalInfo: React.FC<Props> = ({ classes }) => {
       toast.success(data.message);
       setUser(data.user);
       router.push('/vendor')
+    },
+    onError:(err)=>{
+      toast.error(err.message)
+    }
+  })
+
+  const { mutate:loggedOut,isPending:isLoggingOut } = useMutation({
+    mutationFn:({endpoint,options}:ApiParams) => api({endpoint,options}),
+    onSuccess:()=>{
+      setUser(null);
+      setIsLoggedIn(false);
+      redirect('/');
     },
     onError:(err)=>{
       toast.error(err.message)
@@ -50,9 +66,26 @@ const PersonalInfo: React.FC<Props> = ({ classes }) => {
     mutate({endpoint:'vendor',options})
   };
 
+
+  const signOutUser=async ()=>{
+    try{
+
+      await signOut(auth);
+
+      const options={
+        method:'GET'
+      }
+
+      loggedOut({endpoint:'logout',options})
+
+    }catch(err:any){
+      toast.error(err.message)
+    }
+  }
+
   return (
     <section className={`${classes} px-6 py-4`}>
-      <Title>Details</Title>
+      <Title>Details <button className="text-primary" onClick={signOutUser}><FaSignOutAlt size={20}/></button></Title>
       <UserImage classes="w-24 h-24 md:hidden flex items-center justify-center" />
       <div className="flex flex-col md:flex-row items-center gap-3 mb-4">
         <Input
@@ -89,7 +122,7 @@ const PersonalInfo: React.FC<Props> = ({ classes }) => {
           {user?.isVendor ? "Dashboard" : "Become a vendor"}
         </Button>
       </div>
-      {isPending && <div className="fixed inset-0 bg-neutral/[0.1] z-[999] w-screen h-screen flex items-center justify-center">
+      {isPending || isLoggingOut && <div className="fixed inset-0 bg-neutral/[0.1] z-[999] w-screen h-screen flex items-center justify-center">
         <Loader />
       </div>}
     </section>

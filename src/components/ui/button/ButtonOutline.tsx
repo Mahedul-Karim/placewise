@@ -5,9 +5,10 @@ type Props = {
   outline?: boolean;
   styles?: string;
   onClick?:()=>void;
+  type?:any;
 };
 
-const Button: React.FC<Props> = ({ children, outline, styles,onClick }) => {
+const Button: React.FC<Props> = ({ children, outline, styles,onClick,type }) => {
   return (
     <button
       className={`flex items-center justify-center ${
@@ -16,6 +17,7 @@ const Button: React.FC<Props> = ({ children, outline, styles,onClick }) => {
           : ""
       } px-4 py-2 rounded-[30px] transition-all duration-300 ${styles}`}
       onClick={onClick}
+      type={type}
     >
       {children}
     </button>

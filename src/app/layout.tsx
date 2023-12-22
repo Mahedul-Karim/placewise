@@ -14,11 +14,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  cloudinary.v2.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET,
-  });
+  
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`font-poppins bg-grey text-neutral overflow-x-hidden`}>
@@ -40,6 +36,7 @@ export default function RootLayout({
             padding: "16px 24px",
             backgroundColor: "#fff",
             color: "#243757",
+            zIndex:99999999
           },
         }}
       />

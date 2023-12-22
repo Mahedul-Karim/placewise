@@ -32,13 +32,14 @@ model Tours{
   startPoint String
   endPoint String
   duration String
-  ratings Int
+  ratings Int @default(0)
   description String
   price Int
   itineary Itineray[]
   reviews Reviews[]
   capacity Int
   creatorId String @db.ObjectId
+  category String
 }
 
 model TourImage{
@@ -47,18 +48,17 @@ model TourImage{
   publicId String
   url String
 
-  tour Tours @relation(fields: [tourName],references: [name])
+  tour Tours @relation(fields: [tourName],references: [name],onDelete:Cascade)
 }
 
 model Itineray{
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
   image String
   title String
   description String
   tourName String 
 
-  tour Tours @relation(fields: [tourName],references: [name] )
+  tour Tours @relation(fields: [tourName],references: [name],onDelete:Cascade )
 }
 model Reviews{
   id String @id @default(auto()) @map("_id") @db.ObjectId
@@ -68,5 +68,5 @@ model Reviews{
   description String
   tourName String
 
-  tour Tours @relation(fields: [tourName],references: [name]) 
+  tour Tours @relation(fields: [tourName],references: [name],onDelete:Cascade) 
 }

@@ -19,6 +19,8 @@ const Login = () => {
 
   const { isLoggedIn, setUser, setIsLoggedIn } = useCtx();
 
+ 
+
   const { mutate, isPending } = useMutation({
     mutationFn: ({ endpoint, options }: ApiParams) =>
       api({ endpoint, options }),
@@ -60,13 +62,13 @@ const Login = () => {
         type="text"
         label="Email Address"
         value={email}
-        onChange={setEmail}
+        onChange={(e:any)=>setEmail(e.target.value)}
       />
       <Input
         type="password"
         label="Password"
         value={password}
-        onChange={setPassword}
+        onChange={(e:any)=>setPassword(e.target.value)}
       />
       <p>
         Don&apos;t have an account?{" "}

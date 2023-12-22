@@ -13,7 +13,7 @@ const Input: React.FC<Props> = ({ type, label, value, onChange }) => {
         type={type}
         className={`focus:outline-none peer w-full bg-transparent relative z-[2] border border-solid px-3 py-2 rounded-md focus:border-primary border-border`}
         value={value!}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={onChange}
       />
       <label
         className={`absolute bg-white peer-focus:-translate-y-[18px] peer-focus:px-2 peer-focus:text-[12px] transition-all duration-300  left-[10px] peer-focus:text-primary top-[10px] peer-focus:!z-[3] ${

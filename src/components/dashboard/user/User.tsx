@@ -3,9 +3,17 @@ import Container from "@/components/ui/Container";
 import React, { useState } from "react";
 import Sidebar from "./sidebar/Sidebar";
 import Main from "./main/Main";
+import { useCtx } from "@/context/ContextProvider";
+import { redirect } from "next/navigation";
 
 const User = () => {
   const [active, setActive] = useState(0);
+  const {user}=useCtx();
+
+
+  if(!user){
+    redirect('/login')
+  }
   return (
     <>
       <div className="py-[30px] bg-neutral"></div>

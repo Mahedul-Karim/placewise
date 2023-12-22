@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { NextResponse, NextRequest } from "next/server";
-import cloudinary from "cloudinary";
+import cloudinary from "@/components/util/cloudinary";
 import { cookies, headers } from "next/headers";
 import { initialFirebase } from "@/lib/firebase-admin";
 import { auth } from "firebase-admin";
