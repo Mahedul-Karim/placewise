@@ -94,7 +94,7 @@ const TourModal: React.FC<Props> = ({ openModal, setOpenModal }) => {
     };
     
     mutate({ endpoint: "tour", options });
-    e.currentTarget.reset()
+    
   };
 
   return (

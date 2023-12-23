@@ -44,7 +44,7 @@ model Tours{
 
 model TourImage{
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  tourName String @unique
+  tourName String
   publicId String
   url String
 

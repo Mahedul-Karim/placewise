@@ -2,7 +2,6 @@ import prisma from "@/lib/prisma";
 import { NextResponse, NextRequest } from "next/server";
 import cloudinary from "@/components/util/cloudinary";
 
-
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const {
@@ -80,20 +79,18 @@ export async function POST(req: NextRequest, res: NextResponse) {
 export async function GET() {
   try {
     const tours = await prisma.tours.findMany({
-      include: {
+      select: {
+        name: true,
+        id:true,
         images: {
-          select:{
-            url:true
-          }
+          select: {
+            url: true,
+          },
         },
-        itineary: {
-          select:{
-            title:true,
-            description:true,
-            image:true
-          }
-        },
-        reviews: true,
+        ratings: true,
+        duration: true,
+        placeCovered: true,
+        price: true,
       },
     });
 
@@ -108,7 +105,7 @@ export async function GET() {
       status: "success",
       tours,
     });
-  } catch (err:any) {
+  } catch (err: any) {
     return NextResponse.json({
       status: "failed",
       message: err.message,

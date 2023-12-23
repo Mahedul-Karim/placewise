@@ -62,7 +62,7 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
   );
 };
 
-export const useCtx = () => {
+export const useCtx:any = () => {
   return useContext(Context);
 };
 
