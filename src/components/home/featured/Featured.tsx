@@ -13,12 +13,7 @@ const Featured = () => {
         <Button outline>See All Packages</Button>
       </div>
       <div className="grid grid-cols-1 sm:!grid-cols-2 lg:!grid-cols-3 gap-4">
-        <TourCard />
-        <TourCard />
-        <TourCard />
-        <TourCard />
-        <TourCard />
-        <TourCard />
+        
       </div>
     </Container>
   );
