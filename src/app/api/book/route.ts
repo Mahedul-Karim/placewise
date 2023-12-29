@@ -5,14 +5,14 @@ import { headers } from "next/headers";
 export async function POST(req: Request) {
   try {
     const url = headers().get("origin");
-    const { productId } = await req.json();
+    const { productId,email } = await req.json();
     console.log(productId);
     const product = await stripe.products.search({
       query: `metadata[\'dbId\']:\'${productId}\'`,
     });
     const session = await stripe.checkout.sessions.create({
       currency: "usd",
-      customer_email: "john@gmail.com",
+      customer_email: email,
       mode: "payment",
       line_items: [
         {

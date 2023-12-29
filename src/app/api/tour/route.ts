@@ -67,7 +67,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       name,
       default_price_data: {
         currency: "usd",
-        unit_amount: +price,
+        unit_amount: +price * 100,
       },
       images: [tourImages[0].url],
       metadata: {

@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/components/ui/button/ButtonOutline";
+import { useCtx } from "@/context/ContextProvider";
 import { api } from "@/lib/api";
 import { ApiParams } from "@/types";
 import { useMutation } from "@tanstack/react-query";
@@ -9,6 +10,9 @@ import { FaCalendarDays } from "react-icons/fa6";
 import { LuUsers2 } from "react-icons/lu";
 
 const Sidebar = ({ price, id }: { price: number; id: string }) => {
+
+  const { user} = useCtx();
+
   const { mutate, isPending } = useMutation({
     mutationFn: ({ endpoint, options }: ApiParams) =>
       api({ endpoint, options }),
@@ -23,10 +27,15 @@ const Sidebar = ({ price, id }: { price: number; id: string }) => {
 
   const formSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if(!user?.email){
+      toast.error('Login first to book a tour!');
+      return;
+    }
     const options = {
       method: "POST",
       body: JSON.stringify({
         productId: id,
+        email:user?.email
       }),
     };
 
