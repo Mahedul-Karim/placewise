@@ -19,18 +19,6 @@ const Login = () => {
 
   const { isLoggedIn, setUser, setIsLoggedIn } = useCtx();
 
- 
-
-  const { mutate, isPending } = useMutation({
-    mutationFn: ({ endpoint, options }: ApiParams) =>
-      api({ endpoint, options }),
-    onSuccess: (data) => {
-      setUser(data.user);
-      setIsLoggedIn(true);
-    },
-    onError: (err) => console.log(err),
-  });
-
   const signinUser = async () => {
     try {
       const { user } = await signInWithEmailAndPassword(
@@ -46,11 +34,22 @@ const Login = () => {
           authorization: `Bearer ${token}`,
         },
       };
-      mutate({ endpoint: "login", options });
+     const data = await api({endpoint:'login',options});
+     return data;
     } catch (err: any) {
-      toast.error("Invalid credentials!");
+      throw err;
     }
   };
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: signinUser,
+    onSuccess: (data) => {
+      setUser(data.user);
+      setIsLoggedIn(true);
+    },
+    onError: (err) => toast.error('Invalid credentials'),
+  });
+
 
   if (isLoggedIn) {
     redirect("/");
@@ -79,7 +78,7 @@ const Login = () => {
           Sign up
         </span>
       </p>
-      <Button styles="bg-primary text-white" onClick={signinUser}>
+      <Button styles="bg-primary text-white" onClick={mutate}>
         {isPending ? <Loader button /> : "Login"}
       </Button>
     </div>

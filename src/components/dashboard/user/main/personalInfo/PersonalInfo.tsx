@@ -43,7 +43,7 @@ const PersonalInfo: React.FC<Props> = ({ classes }) => {
     onSuccess:()=>{
       setUser(null);
       setIsLoggedIn(false);
-      redirect('/');
+      router.push('/');
     },
     onError:(err)=>{
       toast.error(err.message)

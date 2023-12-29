@@ -1,31 +1,40 @@
 import React from "react";
 import ShortDetails from "./ShortDetails";
 
-const Summary = () => {
+type Props={
+  id:string;
+  placesCovered:number;
+  startPoint:string;
+  endPoint:string;
+  duration:string;
+  rating:number;
+}
+
+const Summary:React.FC<Props> = ({id,placesCovered,startPoint,endPoint,rating,duration}) => {
   const SHORT_DETAILS = [
     {
       label: "ID",
-      value: 123,
+      value: id && id,
     },
     {
       label: "Place Covered",
-      value: 123,
+      value: placesCovered && placesCovered,
     },
     {
       label: "Start Point",
-      value: 123,
+      value: startPoint && startPoint,
     },
     {
       label: "Duration",
-      value: 123,
+      value: duration && duration,
     },
     {
       label: "Endpoint",
-      value: 123,
+      value:  endPoint && endPoint,
     },
     {
       label: "rating",
-      value: 123,
+      value: rating && rating,
     },
   ];
   return (

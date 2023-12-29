@@ -4,7 +4,12 @@ type Props = {
   src: string;
   index: number;
   length: number;
-  gallery: { img: string }[];
+  gallery: {
+    id:string;
+    tourName:string;
+    url:string;
+    publicId:string;
+  }[];
 };
 
 const GalleryItem: React.FC<Props> = ({ src, index, length, gallery }) => {
@@ -25,7 +30,7 @@ const GalleryItem: React.FC<Props> = ({ src, index, length, gallery }) => {
               {gallery.slice(-2).map((it, i) => (
                 <div className="w-full h-full" key={i}>
                   <img
-                    src={it.img}
+                    src={it.url}
                     alt="tour img"
                     className="block w-full h-full object-cover rounded-2xl"
                   />

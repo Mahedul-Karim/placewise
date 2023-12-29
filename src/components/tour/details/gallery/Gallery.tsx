@@ -20,19 +20,29 @@ const GALLERY = [
     img: "/tour-details-img-6.webp",
   },
 ];
-const Gallery = () => {
+
+type Props={
+  images:{
+    id:string;
+    tourName:string;
+    url:string;
+    publicId:string;
+  }[]
+}
+
+const Gallery:React.FC<Props> = ({images}) => {
   return (
     <div
       className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6 sm:auto-rows-[185px] mb-[40px]"
       id="gallery"
     >
-      {GALLERY.map((item, index) => (
+      {images?.map((item, index) => (
         <GalleryItem
-          src={item.img}
+          src={item.url}
           index={index}
-          length={GALLERY.length}
+          length={images.length}
           key={index}
-          gallery={GALLERY}
+          gallery={images}
         />
       ))}
       

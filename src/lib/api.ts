@@ -12,10 +12,10 @@ export const api = async ({endpoint, options}:ApiParams) => {
     const data = await res.json();
 
     if (data.status === "failed") {
-      throw new Error(data);
+      throw new Error(data.message);
     }
     return data;
-  } catch (err) {
+  } catch (err:any) {
     throw err;
   }
 };
