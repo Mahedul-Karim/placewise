@@ -22,7 +22,7 @@ const MONTHS = [
 ];
 
 const Calendar = () => {
-  const [date, setDate] = useState(new Date());
+  const date = new Date();
   const [currYear, setCurrYear] = useState(date.getFullYear());
   const [currMonth, setCurrMonth] = useState(date.getMonth());
 
@@ -39,22 +39,22 @@ const Calendar = () => {
 
   const nextMonth = () => {
     if (currMonth === 11) {
-      setDate((prev) => new Date(currYear + 1, 0, 1));
+    
       setCurrYear((prev) => new Date(currYear+1,0,1).getFullYear());
       setCurrMonth((_) => date.getMonth());
     } else {
-      setDate(new Date());
+    
       setCurrMonth((prev) => prev + 1);
     }
   };
 
   const prevMonth = () => {
     if (currMonth === 0) {
-        setDate((prev) => new Date(currYear - 1, 11, 1));
+        
         setCurrYear((prev) => new Date(currYear-1,11,1).getFullYear());
         setCurrMonth((_) => new Date(currYear-1,11,1).getMonth());
       } else {
-        setDate(new Date());
+        
         setCurrMonth((prev) => prev - 1);
       }
   };
