@@ -7,6 +7,7 @@ import Counter from "../home/counter/Counter";
 import Category from "../home/category/Category";
 import Memories from "../home/memories/Memories";
 import Footer from "../footer/Footer";
+import Calendar from "../ui/Calendar";
 
 const Home = () => {
   return (

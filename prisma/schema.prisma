@@ -22,6 +22,7 @@ model User{
   Bio String?
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now())
+  bookings String[] @default([])
 }
 
 model Tours{
@@ -70,3 +71,15 @@ model Reviews{
 
   tour Tours @relation(fields: [tourName],references: [name],onDelete:Cascade) 
 }
+
+model Bookings{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  startData DateTime
+  endDate DateTime
+  isPaid Boolean @default(false)
+  isActive Boolean @default(true)
+  userId String @db.ObjectId
+  tourDetails String @db.ObjectId
+  vendorId String @db.ObjectId
+}
+

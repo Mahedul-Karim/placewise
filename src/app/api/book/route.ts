@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import stripe from "@/components/util/stripe";
 import { headers } from "next/headers";
+import prisma from "@/lib/prisma";
 
 export async function POST(req: Request) {
   try {
     const url = headers().get("origin");
-    const { productId,email } = await req.json();
-    console.log(productId);
+    const { productId,email,startDate,endDate,duration,userId,vendorId } = await req.json();
+    
     const product = await stripe.products.search({
       query: `metadata[\'dbId\']:\'${productId}\'`,
     });
@@ -23,6 +24,18 @@ export async function POST(req: Request) {
       success_url: `${url}/success`,
       cancel_url: `${url}`,
     });
+
+    const tourEndDate = endDate + (duration * 100000000);
+
+    await prisma.bookings.create({
+      data:{
+        startData : startDate,
+        endDate:tourEndDate,
+        tourDetails:productId,
+        userId,
+        vendorId
+      }
+    })
 
     return NextResponse.json({ url: session.url! });
   } catch (err: any) {
