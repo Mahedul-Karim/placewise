@@ -6,11 +6,13 @@ import { CiClock2 } from "react-icons/ci";
 import { LuUsers } from "react-icons/lu";
 import { SafeTours } from "@/types";
 import { useRouter } from "next/navigation";
+import Carousel from "./carousel/Carousel";
 type Props = {
   tour: SafeTours;
 };
 
 const TourCard: React.FC<Props> = ({ tour }) => {
+  
   const router = useRouter();
   return (
     <div className="flex flex-col p-4 bg-white rounded-lg gap-4">
@@ -25,6 +27,7 @@ const TourCard: React.FC<Props> = ({ tour }) => {
             {tour?.placeCovered} places
           </Button>
         </div>
+        
       </div>
       <div>
         <div className="flex items-center justify-between">

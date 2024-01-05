@@ -41,7 +41,7 @@ const Calendar = () => {
     if (currMonth === 11) {
     
       setCurrYear((prev) => new Date(currYear+1,0,1).getFullYear());
-      setCurrMonth((_) => date.getMonth());
+      setCurrMonth((_) => new Date(currYear+1,0,1).getMonth());
     } else {
     
       setCurrMonth((prev) => prev + 1);
@@ -58,7 +58,7 @@ const Calendar = () => {
         setCurrMonth((prev) => prev - 1);
       }
   };
-  
+  const datesArray=[];
   for (let i = firstDayOfMonth; i > 0; i--) {
     dateTag += `<div>
         <button
@@ -69,6 +69,7 @@ const Calendar = () => {
           ${lastDateOfLastMonth - i + 1}
         </button>
       </div>`;
+      datesArray.push({date:lastDateOfLastMonth - i + 1,inActive:true})
   }
 
   for (let i = 1; i <= lastDateOfMonth; i++) {
@@ -80,6 +81,7 @@ const Calendar = () => {
       ${i}
     </button>
   </div>`;
+  datesArray.push({date:i,inActive:false})
   }
 
   for (let i = lastDayOfMonth; i < 6; i++) {
@@ -92,8 +94,9 @@ const Calendar = () => {
       ${i - lastDayOfMonth + 1}
     </button>
   </div>`;
+  datesArray.push({date:i - lastDayOfMonth + 1 - i + 1,inActive:true})
   }
-
+  console.log(datesArray)
   return (
     <div className="w-full lg:max-w-[450px] px-3 py-4 flex flex-col gap-2">
       <div className="flex items-center justify-between">

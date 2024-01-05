@@ -7,12 +7,13 @@ import { Tours } from "@prisma/client";
 import Loader from "../ui/Loader";
 import toast from "react-hot-toast";
 import { SafeTours } from "@/types";
+import Carousel from "./carousel/Carousel";
 
 const MainTour = () => {
   const { data, isPending, error } = useTours();
 
-  if(error){
-    toast.error(error.message)
+  if (error) {
+    toast.error(error.message);
   }
 
   return (
@@ -36,6 +37,7 @@ const MainTour = () => {
           </div>
         </div>
       )}
+      <Carousel />
     </>
   );
 };
