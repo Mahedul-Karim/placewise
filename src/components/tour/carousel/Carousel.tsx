@@ -69,7 +69,7 @@ const Carousel: React.FC<Props> = ({ images }) => {
           <img
             src={image.url}
             alt="featured image"
-            className={`block max-w-[180px] max-h-[90px] 400px:max-w-[280px] 400px:max-h-[140px] sm:max-h-[250px] md:max-h-[350px] object-cover sm:max-w-[350px] md:max-w-[450px] absolute shadow-md transition-all duration-300 image carousel-item-${
+            className={`block max-w-[250px] max-h-[150px] 400px:max-w-[280px] 400px:max-h-[140px] sm:max-h-[250px] md:max-h-[350px] object-cover sm:max-w-[350px] md:max-w-[450px] absolute shadow-md transition-all duration-300 image carousel-item-${
               i + 1
             }`}
             key={i}
