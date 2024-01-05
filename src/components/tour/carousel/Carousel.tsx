@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { sliderFunction } from "@/components/util/SliderFunction";
+import React, { useEffect, useRef, useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 type Props = {
   images?: {
@@ -12,6 +13,7 @@ type Props = {
 };
 
 const Carousel: React.FC<Props> = ({ images }) => {
+  const imageContainer = useRef<any>();
   const image = [
     {
       url: "http://res.cloudinary.com/dleogo48u/image/upload/v1703249147/avatars/hgnvoclhxbvkduzm6hnn.webp",
@@ -38,33 +40,37 @@ const Carousel: React.FC<Props> = ({ images }) => {
 
   let count = 0;
 
-  const nextSlide = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    const images = document.querySelectorAll(".image");
+  const nextSlide = () => {
+    const images = imageContainer.current.childNodes;
     if (count === images.length) {
       count = 1;
     } else {
       count++;
     }
 
-    images.forEach((el, ind) => {
-      let offSet: number = ind - count;
-      if (offSet < 0) {
-        offSet += images.length;
-      }
+    sliderFunction(images, count);
+  };
 
-      for (let i = 0; i < images.length; i++) {
-        el.classList.remove(`carousel-item-${i + 1}`);
-        el.classList.add(`carousel-item-${offSet + 1}`);
-      }
-    });
+  const prevClick = () => {
+    const images = imageContainer.current.childNodes;
+
+    if (count === 0) {
+      count = images.length - 1;
+    } else {
+      count--;
+    }
+    sliderFunction(images, count);
   };
 
   return (
     <div className="fixed w-full h-full left-0 top-0 bg-[#000000] backdrop-blur-[2px] z-[99999] flex items-center justify-center flex-col">
-        <button className="absolute top-[20px] right-[20px] bg-white rounded-md flex items-center justify-center p-2 w-10 h-10">
-          <RxCross1 />
-        </button>
-      <div className="relative w-full h-full flex items-center justify-center shrink-0 translate-x-[5%] image-slider">
+      <button className="absolute top-[20px] right-[20px] bg-white rounded-md flex items-center justify-center p-2 w-10 h-10">
+        <RxCross1 />
+      </button>
+      <div
+        className="relative w-full h-full flex items-center justify-center shrink-0 translate-x-[5%] image-slider"
+        ref={imageContainer}
+      >
         {image?.map((image, i) => (
           <img
             src={image.url}
