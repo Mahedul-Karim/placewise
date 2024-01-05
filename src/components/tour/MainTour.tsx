@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Sort from "../filter/Sort";
 import TourCard from "./TourCard";
 import { useTours } from "../hooks/useTours";
@@ -10,6 +10,7 @@ import { SafeTours } from "@/types";
 import Carousel from "./carousel/Carousel";
 
 const MainTour = () => {
+  
   const { data, isPending, error } = useTours();
 
   if (error) {
@@ -37,7 +38,6 @@ const MainTour = () => {
           </div>
         </div>
       )}
-      <Carousel />
     </>
   );
 };

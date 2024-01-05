@@ -2,42 +2,23 @@
 
 import { sliderFunction } from "@/components/util/SliderFunction";
 import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 type Props = {
-  images?: {
+  images: {
     id: string;
     tourName: string;
     publicId: string;
     url: string;
   }[];
+  open: boolean;
+  setOpen: (bol: boolean) => void;
 };
 
-const Carousel: React.FC<Props> = ({ images }) => {
+const Carousel: React.FC<Props> = ({ images, open, setOpen }) => {
   const imageContainer = useRef<any>();
-  const image = [
-    {
-      url: "http://res.cloudinary.com/dleogo48u/image/upload/v1703249147/avatars/hgnvoclhxbvkduzm6hnn.webp",
-      num: 1,
-    },
-
-    {
-      url: "http://res.cloudinary.com/dleogo48u/image/upload/v1703249145/avatars/nmetlpqnvw1js737ardl.webp",
-      num: 2,
-    },
-    {
-      url: "http://res.cloudinary.com/dleogo48u/image/upload/v1703249146/avatars/foy2txonmltozfw7evnb.webp",
-      num: 3,
-    },
-    {
-      url: "http://res.cloudinary.com/dleogo48u/image/upload/v1703249148/avatars/xdbwhatgzp20rzuxrves.webp",
-      num: 4,
-    },
-    {
-      url: "http://res.cloudinary.com/dleogo48u/image/upload/v1703249149/avatars/mq1fj4x2ecfcumhrfc0a.webp",
-      num: 5,
-    },
-  ];
-
+  
   let count = 0;
 
   const nextSlide = () => {
@@ -51,7 +32,7 @@ const Carousel: React.FC<Props> = ({ images }) => {
     sliderFunction(images, count);
   };
 
-  const prevClick = () => {
+  const prevSlide = () => {
     const images = imageContainer.current.childNodes;
 
     if (count === 0) {
@@ -62,16 +43,25 @@ const Carousel: React.FC<Props> = ({ images }) => {
     sliderFunction(images, count);
   };
 
-  return (
-    <div className="fixed w-full h-full left-0 top-0 bg-[#000000] backdrop-blur-[2px] z-[99999] flex items-center justify-center flex-col">
-      <button className="absolute top-[20px] right-[20px] bg-white rounded-md flex items-center justify-center p-2 w-10 h-10">
+  const carouselElement = (
+    <div
+      className={`fixed w-full h-full left-0 top-0 bg-[#000000]/[0.5] backdrop-blur-[2px] z-[99999] flex items-center justify-center flex-col transition-all  ${
+        open
+          ? "translate-y-0 opacity-1 visible"
+          : "translate-y-[50px] opacity-0 invisible"
+      }`}
+    >
+      <Button
+        classes="absolute top-[20px] right-[20px] z-[99999]"
+        onClick={() => setOpen(false)}
+      >
         <RxCross1 />
-      </button>
+      </Button>
       <div
         className="relative w-full h-full flex items-center justify-center shrink-0 translate-x-[5%] image-slider"
         ref={imageContainer}
       >
-        {image?.map((image, i) => (
+        {images?.slice(0,5)?.map((image, i) => (
           <img
             src={image.url}
             alt="featured image"
@@ -82,11 +72,37 @@ const Carousel: React.FC<Props> = ({ images }) => {
           />
         ))}
       </div>
-      <button className="bg-white" onClick={nextSlide}>
-        Click me
-      </button>
+      <div className="absolute bottom-[30%] sm:bottom-[20%] lg:bottom-[10%] right-[50%] flex items-center gap-2 translate-x-[50%]">
+        <Button onClick={prevSlide}>
+          <FaChevronLeft />
+        </Button>
+        <Button onClick={nextSlide}>
+          <FaChevronRight />
+        </Button>
+      </div>
     </div>
   );
+
+  return createPortal(carouselElement, document.body);
 };
+
+export function Button({
+  children,
+  classes,
+  onClick,
+}: {
+  children: React.ReactNode;
+  classes?: string;
+  onClick?: any;
+}) {
+  return (
+    <button
+      className={`${classes} bg-white rounded-md flex items-center justify-center p-2 w-10 h-10`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}
 
 export default Carousel;
