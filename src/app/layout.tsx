@@ -16,8 +16,8 @@ export default function RootLayout({
 }) {
   
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`font-poppins bg-grey text-neutral overflow-x-hidden`}>
+    <html lang="en" suppressHydrationWarning className="overflow-x-clip">
+      <body className={`font-poppins bg-grey text-neutral overflow-x-clip`}>
         <ContextProvider>{children}</ContextProvider>
         <Toaster
         position="top-center"

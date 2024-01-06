@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Container from "../ui/Container";
 import Img from "../util/Img";
 import Nav from "./nav/Nav";
@@ -7,23 +7,13 @@ import UserNav from "./nav/UserNav";
 import DotMenu from "../util/DotMenu";
 
 const Header = () => {
-  const [sticky, setSticky] = useState(false);
+  
   const [active, setActive] = useState(false);
-  useEffect(() => {
-    window.addEventListener("scroll", function (e) {
-      if (window.scrollY >= 20) {
-        setSticky(true);
-      } else {
-        setSticky(false);
-      }
-    });
-  }, []);
+  
 
   return (
     <div
-      className={`py-2 border-border border-b-[1px] border-solid ${
-        sticky ? "fixed-nav shadow-md" : ""
-      }`}
+      className={`py-2 absolute top-0 left-0 w-full z-1 bg-white/[0.4] backdrop-blur-[2px] !z-[15]`}
     >
       <Container>
         <div className="flex items-center justify-between">
