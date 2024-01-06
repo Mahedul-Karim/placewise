@@ -1,22 +1,12 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Container from "../../ui/Container";
 import { Button } from "@/components/tour/carousel/Carousel";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-/**
- * 'primary':'#363aed',
-    'primary-light':'#ececfd',
-    'neutral':'#243757',
-    'grey':'#f9f9fe',
-    'white':'#fff',
-    'green':'#58DA90',
-    'yellow':'#FFBF47',
-    'border':'#e5e7eb',
- */
+
 const Hero = () => {
   const heroRef = useRef<any>();
   const IMAGES = [
-    
     {
       url: "http://res.cloudinary.com/dleogo48u/image/upload/v1703584578/avatars/tz1h79ottvdalepzb1im.jpg",
       title: "Swizerland",
@@ -49,9 +39,28 @@ const Hero = () => {
     },
   ];
 
+  let timer: any;
+
+  const autoPlay = () => {
+    timer = setInterval(() => {
+      nextSlide();
+    }, 5000);
+  };
+
+  const clearAutoplay = () => clearInterval(timer);
+
   const nextSlide = () => {
     heroRef?.current.appendChild(heroRef.current.firstElementChild);
+    clearAutoplay();
+    autoPlay();
   };
+  const prevSlide = () => {
+    heroRef.current.prepend(heroRef.current.lastElementChild);
+  };
+  useEffect(() => {
+    autoPlay();
+    return () => clearAutoplay();
+  }, []);
 
   return (
     <Container styles="relative">
@@ -59,22 +68,23 @@ const Hero = () => {
         className="slide relative w-full h-[400px] 400px:h-[600px] overflow-x-clip"
         ref={heroRef}
       >
-        {IMAGES.map((img,i)=><div
-          style={{
-            backgroundImage: `url(${img.url})`,
-          }}
-          key={i}
-        >
-          <div className="absolute top-[50%] left-[100px] max-w-[300px] text-left content text-white">
-            <div className="text-[40px] uppercase font-[600] opacity-0 title">
-              {img.title}
+        {IMAGES.map((img, i) => (
+          <div
+            style={{
+              backgroundImage: `url(${img.url})`,
+            }}
+            key={i}
+          >
+            <div className="absolute top-[50%] left-[100px] max-w-[300px] text-left content text-white">
+              <div className="text-[40px] uppercase font-[600] opacity-0 title">
+                {img.title}
+              </div>
             </div>
           </div>
-        </div>)}
-        
+        ))}
       </div>
       <div className="absolute bottom-[20px] flex items-center gap-2 -translate-x-[50%] left-[50%]">
-        <Button>
+        <Button onClick={prevSlide}>
           <FaChevronLeft />
         </Button>
         <Button onClick={nextSlide}>
